@@ -27,23 +27,29 @@ namespace MirrorMadness
         private static void StartHookSB(Action<BehaviorSpeculator> orig, BehaviorSpeculator self)
         {
             float hp = 15;
+
             if (self.healthHaver)
             {
                 hp = self.healthHaver.GetMaxHealth() / 3;
+
             }
 
-            self.AttackBehaviors.Add(new MirrorImageBehaviorButBette
+            if (self.healthHaver.IsBoss)
             {
-                NumImages = 2,
-                MaxImages = 3,
-                MirrorHealth = hp,
-                SpawnDelay = 0.5f,
-                SplitDelay = 1,
-                SplitDistance = 1.25f,
-                AnimRequiresTransparency = true,
-                Cooldown = 8,
+                self.AttackBehaviors.Add(new MirrorImageBehavior
+                {
+                    NumImages = 2,
+                    MaxImages = 3,
+                    MirrorHealth = hp,
+                    SpawnDelay = 0.5f,
+                    SplitDelay = 1,
+                    SplitDistance = 1.25f,
+                    AnimRequiresTransparency = true,
+                    Cooldown = 8,
 
-            });
+                });
+            }
+           
             orig(self);
         }
 
