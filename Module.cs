@@ -34,7 +34,7 @@ namespace MirrorMadness
 
             }
 
-            if (self.healthHaver.IsBoss)
+            if (!self.healthHaver.IsBoss)
             {
                 self.AttackBehaviors.Add(new MirrorImageBehavior
                 {
